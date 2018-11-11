@@ -35,6 +35,7 @@ let ballPositionx = 180
 let ballDirection = 0
 let ballStart = true
 let ballHit = false
+let ballVel = 0
 
 sketch.loop(frame => {
   sketch.background("pink")
@@ -48,15 +49,17 @@ sketch.loop(frame => {
 
   if (ballPositiony>=playerPosition && ballPositiony<=playerPosition+100 && ballPositionx===40){
     ballHit = true
-    ballStart=false
+    ballStart = false
   }
 
   if (ballHit===true){
-    ballPositiony+= (-directionPlayer)
+	ballVel = directionPlayer
+	ballHit = false
   }
 
   if (ballStart===false){
-    ballPositionx+=2
+    ballPositionx += 2
+	ballPositiony += ballVel
   }
 
   if (ballPositionx>=sketch.width-20){
